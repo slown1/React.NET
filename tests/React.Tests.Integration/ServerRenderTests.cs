@@ -48,5 +48,15 @@ namespace React.Tests.Integration
 			ReactEnvironment.GetCurrentOrThrow.CreateComponent("HelloWorld", new { name = "Tester" }, serverOnly: true).RenderHtml(stringWriter, renderServerOnly: true);
 			Assert.Equal("<div>Hello Tester!</div>", stringWriter.ToString());
 		}
+
+		[Fact]
+		public void BabelTransformsJSX()
+		{
+			Assert.Equal(@"React.createElement(
+  ""div"",
+  null,
+  ""Hello""
+);", ReactEnvironment.Current.Babel.Transform("<div>Hello</div>"));
+		}
 	}
 }
