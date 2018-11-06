@@ -20,7 +20,7 @@ namespace React.Sample.Webpack.CoreMvc
 		public IConfiguration Configuration { get; }
 
 		// This method gets called by the runtime. Use this method to add services to the container.
-		public void ConfigureServices(IServiceCollection services)
+		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
 
@@ -31,7 +31,7 @@ namespace React.Sample.Webpack.CoreMvc
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 			// Build the intermediate service provider then return it
-			services.BuildServiceProvider();
+			return services.BuildServiceProvider();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +51,9 @@ namespace React.Sample.Webpack.CoreMvc
 					.SetReuseJavaScriptEngines(true)
 					.SetLoadBabel(false)
 					.SetLoadReact(false)
-					.AddScriptWithoutTransform("~/components-bundle.generated.js");
+					.SetInitializeDelayedComponents(true)
+					.AddScriptWithoutTransform("~/server/server-polyfill.js")
+					.AddScriptWithoutTransform("~/server/components-bundle.js");
 			});
 
 			app.UseMvc(routes =>

@@ -9,9 +9,34 @@ import {
 } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import { StyledComponentsDemo } from './styled-components.jsx';
-import { EmotionDemo } from './emotion.jsx';
-import { ReactJssDemo } from './react-jss.jsx';
+import Loadable from 'react-loadable';
+
+const StyledComponentsDemo = Loadable({
+	loader: () => System.import('./styled-components.jsx'),
+	modules: ['./styled-components.jsx'],
+	webpack: () => [require.resolveWeak('./styled-components.jsx')],
+	loading() {
+		return <div>Loading...</div>;
+	},
+});
+
+const EmotionDemo = Loadable({
+	loader: () => System.import('./emotion.jsx'),
+	modules: ['./emotion.jsx'],
+	webpack: () => [require.resolveWeak('./emotion.jsx')],
+	loading() {
+		return <div>Loading...</div>;
+	},
+});
+
+const ReactJssDemo = Loadable({
+	loader: () => System.import('./react-jss.jsx'),
+	modules: ['./react-jss.jsx'],
+	webpack: () => [require.resolveWeak('./react-jss.jsx')],
+	loading() {
+		return <div>Loading...</div>;
+	},
+});
 
 class Navbar extends Component {
 	render() {

@@ -8,13 +8,21 @@
 	var styledComponentsFunctions = new StyledComponentsFunctions();
 	var reactJssFunctions = new ReactJssFunctions();
 	var helmetFunctions = new ReactHelmetFunctions();
+	var delayedLoaderFunctions = new DelayedLoaderFunctions();
 
-	var chainedFunctions = new ChainedRenderFunctions(emotionFunctions, styledComponentsFunctions, reactJssFunctions, helmetFunctions);
+	var chainedFunctions = new ChainedRenderFunctions(emotionFunctions, styledComponentsFunctions, reactJssFunctions, helmetFunctions, delayedLoaderFunctions);
 }
+
+<script src="/components-bundle.js"></script>
+
 @Html.ReactRouter("RootComponent", new { }, renderFunctions: chainedFunctions)
 @{
 	ViewBag.ServerStyles = styledComponentsFunctions.RenderedStyles + reactJssFunctions.RenderedStyles;
 	ViewBag.HelmetTitle = helmetFunctions.RenderedHelmet.GetValueOrDefault("title");
+
+	foreach (var script in delayedLoaderFunctions.RenderedScripts) {
+		<script src="@script"></script>
+	}
 }
-<script src="/components-bundle.generated.js"></script>
+
 @Html.ReactInitJavaScript()
