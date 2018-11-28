@@ -51,7 +51,7 @@ namespace React.Sample.Webpack.CoreMvc
 					.SetReuseJavaScriptEngines(true)
 					.SetLoadBabel(false)
 					.SetLoadReact(false)
-					.SetInitializeDelayedComponents(true)
+					.SetDelayedScriptsPath("~/")
 					.AddScriptWithoutTransform("~/server/server-polyfill.js")
 					.AddScriptWithoutTransform("~/server/components-bundle.js");
 			});

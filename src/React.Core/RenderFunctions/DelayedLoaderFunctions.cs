@@ -9,6 +9,13 @@ namespace React.RenderFunctions
 	///
 	public class DelayedLoaderFunctions : RenderFunctionsBase
 	{
+		private readonly string _pathToReactLoadableJson;
+
+		public DelayedLoaderFunctions(string pathToReactLoadableJson)
+		{
+			_pathToReactLoadableJson = pathToReactLoadableJson;
+		}
+
 		///
 		public ReadOnlyCollection<string> RenderedScripts { get; private set; }
 
@@ -37,8 +44,8 @@ React.createElement(
 		///
 		public override void PostRender(Func<string, string> executeJs)
 		{
-			// Hack
-			executeJs($"var loadableJson = {File.ReadAllText("./wwwroot/react-loadable.json")};");
+			// This file could be huge, can we cache it per engine?
+			executeJs($"var loadableJson = {File.ReadAllText(_pathToReactLoadableJson)};");
 			RenderedScripts = JsonConvert.DeserializeObject<ReadOnlyCollection<string>>(executeJs(@"
 function getBundles(manifest, moduleIds) {
   return moduleIds.reduce((bundles, moduleId) => {
@@ -46,7 +53,7 @@ function getBundles(manifest, moduleIds) {
   }, []);
 };
 
-JSON.stringify(getBundles(loadableJson, loadableModules).map(x => x.file.replace('server/','')));"));
+JSON.stringify(getBundles(loadableJson, loadableModules).map(x => x == null ? null : x.file.replace('server/','')).filter(x => x));"));
 		}
 
 	}

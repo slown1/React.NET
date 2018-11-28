@@ -1,6 +1,8 @@
+@using Microsoft.AspNetCore.Hosting;
 @using React.AspNet
 @using React.RenderFunctions
 @using React.Router
+@inject IHostingEnvironment HostingEnvironment
 
 @{
 	Layout = "_Layout";
@@ -8,7 +10,7 @@
 	var styledComponentsFunctions = new StyledComponentsFunctions();
 	var reactJssFunctions = new ReactJssFunctions();
 	var helmetFunctions = new ReactHelmetFunctions();
-	var delayedLoaderFunctions = new DelayedLoaderFunctions();
+	var delayedLoaderFunctions = new DelayedLoaderFunctions(HostingEnvironment.WebRootPath + "\\react-loadable.json");
 
 	var chainedFunctions = new ChainedRenderFunctions(emotionFunctions, styledComponentsFunctions, reactJssFunctions, helmetFunctions, delayedLoaderFunctions);
 }

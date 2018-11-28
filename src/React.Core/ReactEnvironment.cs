@@ -186,10 +186,12 @@ namespace React
 		public sealed class WebpackHelper
 		{
 			readonly IFileSystem _fileSystem;
+			readonly string _delayedScriptsPath;
 
 			///
-			public WebpackHelper(IFileSystem fileSystem)
+			public WebpackHelper(string delayedScriptsPath, IFileSystem fileSystem)
 			{
+				_delayedScriptsPath = delayedScriptsPath;
 				_fileSystem = fileSystem;
 			}
 			///
@@ -208,7 +210,7 @@ namespace React
 
 				Console.WriteLine("Loading " + path);
 
-				return _fileSystem.ReadAsString(path);
+				return _fileSystem.ReadAsString(Path.Combine(_delayedScriptsPath, path));
 			}
 		}
 
@@ -224,9 +226,9 @@ namespace React
 				return;
 			}
 
-			if (_config.InitializeDelayedComponents)
+			if (_config.DelayedScriptsPath != null)
 			{
-				Engine.EmbedHostObject("WebpackHelper", new WebpackHelper(_fileSystem));
+				Engine.EmbedHostObject("WebpackHelper", new WebpackHelper(_config.DelayedScriptsPath, _fileSystem));
 			}
 
 			foreach (var file in _config.Scripts)
@@ -254,7 +256,7 @@ namespace React
 				}
 			}
 
-			if (_config.InitializeDelayedComponents)
+			if (_config.DelayedScriptsPath != null)
 			{
 				try
 				{
