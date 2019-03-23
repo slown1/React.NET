@@ -1,0 +1,26 @@
+FROM node:10 AS node-build
+
+COPY . /app
+
+WORKDIR /app/src/React.Core
+
+RUN npm i
+RUN npm run build
+
+WORKDIR /app/src/React.Core/babel-legacy
+
+RUN npm i
+RUN npm run build
+
+WORKDIR /app/src/React.Sample.Webpack.CoreMvc
+
+RUN npm i
+RUN npm run build
+
+FROM mono:latest AS mono
+
+COPY . /app
+
+COPY --from=node-build /app/src/React.Core/Resources /app/src/React.Core/Resources
+
+RUN mono --version
