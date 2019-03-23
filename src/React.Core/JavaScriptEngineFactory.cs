@@ -295,7 +295,7 @@ namespace React
 			}
 
 			var exceptionMessages = new List<string>();
-			foreach (var engineFactory in jsEngineSwitcher.EngineFactories)
+			foreach (var engineFactory in jsEngineSwitcher.EngineFactories.ToList())
 			{
 				IJsEngine engine = null;
 				try
