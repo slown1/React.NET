@@ -22,6 +22,7 @@ namespace React.Sample.Mvc4
 				//.AddScriptWithoutTransform("~/Content/lib/jquery.min.js")
 				.AddScriptWithoutTransform("~/Content/lib/reactstrap.min.js")
 
+				//@*added semantic ui dependency*@
 				.AddScriptWithoutTransform("~/Content/lib/semantic-ui-react.min.js")
 				.AddScript("~/Content/Sample.jsx");
 

@@ -54,6 +54,10 @@ function CommentsBox(props) {
 				<Reactstrap.Button onClick={loadMoreClicked}>
 					Load More
 				</Reactstrap.Button>
+
+				{/*  added semantic ui dependency */ }
+			<semanticUIReact.Button>Click Here Semantic UI</semanticUIReact.Button>
+
 			);
 		} else {
 			return <em>No more comments</em>;
