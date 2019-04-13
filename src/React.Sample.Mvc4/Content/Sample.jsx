@@ -51,12 +51,14 @@ function CommentsBox(props) {
 			return <em>Loading...</em>;
 		} else if (state.hasMore) {
 			return (
-				<Reactstrap.Button onClick={loadMoreClicked}>
-					Load More
-				</Reactstrap.Button>
+				<div>
+					<Reactstrap.Button onClick={loadMoreClicked}>
+						Load More
+					</Reactstrap.Button>
 
-				{/*  added semantic ui dependency */ }
-			<semanticUIReact.Button>Click Here Semantic UI</semanticUIReact.Button>
+					{/*  added semantic ui dependency */}
+					<semanticUIReact.Button>Click Here Semantic UI</semanticUIReact.Button>
+				</div>
 
 			);
 		} else {
