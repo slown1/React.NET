@@ -1621,7 +1621,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /*!******************************************************!*\
   !*** ./node_modules/react-emotion/dist/index.esm.js ***!
   \******************************************************/
-/*! exports provided: flush, hydrate, cx, merge, getRegisteredStyles, injectGlobal, keyframes, css, sheet, caches, default */
+/*! exports provided: default, flush, hydrate, cx, merge, getRegisteredStyles, injectGlobal, keyframes, css, sheet, caches */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

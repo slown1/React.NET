@@ -152,9 +152,14 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Content\lib\jquery.min.js" />
     <Content Include="Content\lib\reactstrap.min.js" />
+    <Content Include="Content\lib\semantic-ui-react.min.js" />
     <Content Include="Content\Sample.css" />
     <Content Include="Global.asax" />
+    <Content Include="TransformBabel.proj">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -176,9 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Sample.jsx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TransformBabel.proj" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\React.Core\React.Core.csproj">
@@ -217,7 +219,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63919</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:63911/</IISUrl>
+          <IISUrl>http://localhost:63919/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:63919/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
