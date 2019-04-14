@@ -6,6 +6,8 @@
  */
 
 var global = global || {};
+//var window = window || {};
+
 var React, ReactDOM, ReactDOMServer, setTimeout, clearTimeout;
 
 // Basic console shim. Caches all calls to console methods.

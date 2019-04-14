@@ -19,7 +19,7 @@ namespace React.Sample.Mvc4
 			ReactSiteConfiguration.Configuration
 				.SetReuseJavaScriptEngines(true)
 				.SetAllowJavaScriptPrecompilation(true)
-				//.AddScriptWithoutTransform("~/Content/lib/jquery.min.js")
+				.AddScriptWithoutTransform("~/Content/lib/window-shim.js")
 				.AddScriptWithoutTransform("~/Content/lib/reactstrap.min.js")
 
 				//@*added semantic ui dependency*@
